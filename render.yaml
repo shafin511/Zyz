@@ -1,0 +1,23 @@
+services:
+  - type: worker # Use 'worker' for background tasks like a polling bot
+    name: telegram-referral-bot
+    env: python # Or your preferred Python version, e.g., python3.10
+    buildCommand: pip install -r requirements.txt
+    startCommand: python tgbot.py
+    healthCheckPath: / # Not strictly used for workers, but good to have if you switch to web later
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false # Mark as secret, set value in Render Dashboard
+      - key: SUPABASE_URL
+        sync: false # Mark as secret
+      - key: SUPABASE_SERVICE_KEY
+        sync: false # Mark as secret
+      - key: BOT_USERNAME
+        sync: false # Mark as secret
+      - key: ADMIN_IDS
+        sync: false # Mark as secret
+      - key: PYTHON_VERSION # Optional: Specify Python version if needed by Render
+        value: 3.10.12 # Example, use a version Render supports
+      # Add SUPPORT_USERNAME here if you use it and want to set it via Render env
+      # - key: SUPPORT_USERNAME
+      #   sync: false

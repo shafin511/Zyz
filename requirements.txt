@@ -1,0 +1,4 @@
+python-telegram-bot
+supabase
+python-dotenv # Good to include for local dev, Render might ignore if .env is not present
+httpx # python-telegram-bot depends on this, good to specify
